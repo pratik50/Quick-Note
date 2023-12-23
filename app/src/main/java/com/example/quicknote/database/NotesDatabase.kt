@@ -1,24 +1,24 @@
 package com.example.quicknote.database
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@androidx.room.Database(entities = arrayOf(Note::class), version = 1, exportSchema = false)
-abstract class Database : RoomDatabase() {
-
-    abstract fun Dao(): Dao
+@Database(entities = [Notes::class], version = 1, exportSchema = false)
+abstract class NotesDatabase : RoomDatabase() {
+    abstract fun NotesDao(): NotesDao
 
     companion object {
-        public var roomDb: Database? = null
+        private var roomDb: NotesDatabase? = null
 
-        fun getDb(context: Context): Database {
+        fun getDb(context: Context): NotesDatabase {
 
             if (roomDb == null) {
                 roomDb = Room.databaseBuilder(
                     context,
-                    Database::class.java,
-                    "note_database.db"
+                    NotesDatabase::class.java,
+                    "Notes.db"
                 ).allowMainThreadQueries().build()
             }
             return roomDb!!
