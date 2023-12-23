@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="its dummy text"
-                android:textColor="@android:color/white"
+                android:textColor="#F5F5F5"
                 android:textSize="22sp"
                 android:maxLines="1"
                 android:textStyle="bold"
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="its dummy text"
-                android:textColor="#BCBCB9"
+                android:textColor="#CEE6F3"
                 android:textSize="15sp"
                 />
 

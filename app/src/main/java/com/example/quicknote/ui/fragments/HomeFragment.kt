@@ -53,6 +53,10 @@ class HomeFragment : Fragment() {
                 oldNotes = notesList as ArrayList<Notes>
                 adapter = NotesAdapter(requireContext(), notesList)
                 binding.rcvNotes.adapter = adapter
+
+                val staggerLayout = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+                binding.rcvNotes.layoutManager = staggerLayout
+                adapter.notifyDataSetChanged()
             }
         }
 
@@ -61,6 +65,10 @@ class HomeFragment : Fragment() {
                 oldNotes = notesList as ArrayList<Notes>
                 adapter = NotesAdapter(requireContext(), notesList)
                 binding.rcvNotes.adapter = adapter
+
+                val staggerLayout = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+                binding.rcvNotes.layoutManager = staggerLayout
+                adapter.notifyDataSetChanged()
             }
         }
 
@@ -69,6 +77,10 @@ class HomeFragment : Fragment() {
                 oldNotes = notesList as ArrayList<Notes>
                 adapter = NotesAdapter(requireContext(), notesList)
                 binding.rcvNotes.adapter = adapter
+
+                val staggerLayout = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+                binding.rcvNotes.layoutManager = staggerLayout
+                adapter.notifyDataSetChanged()
             }
         }
 
@@ -77,6 +89,10 @@ class HomeFragment : Fragment() {
                 oldNotes = notesList as ArrayList<Notes>
                 adapter = NotesAdapter(requireContext(), notesList)
                 binding.rcvNotes.adapter = adapter
+
+                val staggerLayout = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+                binding.rcvNotes.layoutManager = staggerLayout
+                adapter.notifyDataSetChanged()
             }
         }
 
@@ -93,6 +109,8 @@ class HomeFragment : Fragment() {
         inflater.inflate(R.menu.search_menu, menu)
         val item = menu.findItem(R.id.menu_search)
         val searchView = item.actionView as? SearchView
+        item.setIcon(R.drawable.search_icon)
+
         searchView?.queryHint = "Find note..."
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

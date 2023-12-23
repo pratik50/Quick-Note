@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.QuickNote" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="colorPrimary">#776B5D</item>
+        <item name="colorPrimary">#65451F</item>
     </style>
 
     <style name="Theme.QuickNote" parent="Base.Theme.QuickNote" />
