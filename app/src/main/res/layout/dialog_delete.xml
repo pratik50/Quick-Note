@@ -17,33 +17,36 @@
         android:layout_height="wrap_content"
         android:text="@string/deleteNoteWarning"
         android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"/>
 
 
-    <TextView
+    <Button
         android:id="@+id/btn_no"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:padding="12dp"
-        android:background="@drawable/no_btn_bg"
+        android:backgroundTint="#C7C5C4"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="20dp"
+        android:textColor="@color/black"
         android:text="No"
         android:gravity="center"
         android:textStyle="bold"/>
 
 
-    <TextView
+    <Button
         android:id="@+id/btn_yes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:padding="12dp"
-        android:background="@drawable/yes_btn_bg"
+        android:textColor="@color/black"
+        android:backgroundTint="#EAC696"
         android:layout_marginStart="20dp"
         android:text="Yes"
         android:gravity="center"

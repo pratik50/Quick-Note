@@ -34,13 +34,14 @@ class EditNotesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //For setting the toolbar title
+        //Setting the toolbar title
         if (activity != null) {
             activity?.setTitle("Update note")
         }
         // Inflate the layout for this fragment
         binding = FragmentEditNotesBinding.inflate(layoutInflater, container, false)
 
+        // Delete Menu Item inflating (New approach)
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -50,7 +51,7 @@ class EditNotesFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 when (menuItem.itemId) {
                     R.id.menu_delete -> {
-                        val bottomSheet = BottomSheetDialog(requireContext())
+                        val bottomSheet = BottomSheetDialog(requireContext(),R.style.BottomSheetStyle_)
                         bottomSheet.setContentView(R.layout.dialog_delete)
 
                         val textViewYes = bottomSheet.findViewById<TextView>(R.id.btn_yes)
@@ -58,7 +59,13 @@ class EditNotesFragment : Fragment() {
 
                         textViewYes?.setOnClickListener {
                             viewModel.deleteNote(oldNotes.data.id!!)
-                            bottomSheet.show()
+                            bottomSheet.dismiss()
+
+                            //Need to call the navcontroller here
+                            val navController = Navigation.findNavController(requireView())
+                            navController.navigate(R.id.action_editNotesFragment_to_homeFragment)
+
+                            Toast.makeText(requireContext(), "Note Deleted!!", Toast.LENGTH_SHORT).show()
                         }
 
                         textViewNo?.setOnClickListener {
@@ -71,6 +78,7 @@ class EditNotesFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
+        //setting the data
         binding.editTitle.setText(oldNotes.data.title)
         binding.editSubtitle.setText(oldNotes.data.subtitle)
         binding.editNotes.setText(oldNotes.data.notes)
@@ -78,45 +86,45 @@ class EditNotesFragment : Fragment() {
         when (oldNotes.data.priority) {
             "1" -> {
                 priority = "1"
-                binding.pGreen.setImageResource(R.drawable.done_icon)
-                binding.pRed.setImageResource(0)
-                binding.pYellow.setImageResource(0)
+                binding.pRed.setImageResource(R.drawable.done_icon)
+                binding.pGreen.setImageResource(0)
+                binding.pBlue.setImageResource(0)
             }
 
             "2" -> {
                 priority = "2"
-                binding.pYellow.setImageResource(R.drawable.done_icon)
-                binding.pGreen.setImageResource(0)
+                binding.pGreen.setImageResource(R.drawable.done_icon)
+                binding.pBlue.setImageResource(0)
                 binding.pRed.setImageResource(0)
             }
 
             "3" -> {
                 priority = "3"
-                binding.pRed.setImageResource(R.drawable.done_icon)
-                binding.pYellow.setImageResource(0)
+                binding.pBlue.setImageResource(R.drawable.done_icon)
+                binding.pRed.setImageResource(0)
                 binding.pGreen.setImageResource(0)
             }
         }
 
-        binding.pGreen.setOnClickListener {
+        binding.pRed.setOnClickListener {
             priority = "1"
+            binding.pRed.setImageResource(R.drawable.done_icon)
+            binding.pBlue.setImageResource(0)
+            binding.pGreen.setImageResource(0)
+        }
+
+        binding.pGreen.setOnClickListener {
+            priority = "2"
             binding.pGreen.setImageResource(R.drawable.done_icon)
             binding.pRed.setImageResource(0)
-            binding.pYellow.setImageResource(0)
+            binding.pBlue.setImageResource(0)
         }
 
-        binding.pYellow.setOnClickListener {
-            priority = "2"
-            binding.pYellow.setImageResource(R.drawable.done_icon)
+        binding.pBlue.setOnClickListener {
+            priority = "3"
+            binding.pBlue.setImageResource(R.drawable.done_icon)
             binding.pGreen.setImageResource(0)
             binding.pRed.setImageResource(0)
-        }
-
-        binding.pRed.setOnClickListener {
-            priority = "3"
-            binding.pRed.setImageResource(R.drawable.done_icon)
-            binding.pYellow.setImageResource(0)
-            binding.pGreen.setImageResource(0)
         }
 
         binding.btnUpdate.setOnClickListener {
@@ -127,6 +135,7 @@ class EditNotesFragment : Fragment() {
 
     }
 
+    //Updating the New data
     private fun update(it: View?) {
 
         val title = binding.editTitle.text.toString()

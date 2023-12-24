@@ -63,7 +63,7 @@
                 />
 
             <ImageView
-                android:id="@+id/pYellow"
+                android:id="@+id/pBlue"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:padding="2dp"

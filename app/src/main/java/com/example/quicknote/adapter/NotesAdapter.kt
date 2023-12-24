@@ -14,6 +14,7 @@ import com.example.quicknote.ui.fragments.HomeFragmentDirections
 class NotesAdapter(val requireContext: Context, private var notesList: List<Notes>) :
     RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
+    //Filtering notes fun
     @SuppressLint("NotifyDataSetChanged")
     fun filtering(newFilteredList: ArrayList<Notes>) {
         notesList = newFilteredList
@@ -53,6 +54,7 @@ class NotesAdapter(val requireContext: Context, private var notesList: List<Note
             }
         }
 
+        //Navigating particular note to editing fragment
         holder.binding.root.setOnClickListener{
             val action = HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(data)
             Navigation.findNavController(it).navigate(action)

@@ -15,16 +15,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        //For Fetching and setting the toolbar
+        //Fetching and setting the toolbar
         val toolbar: Toolbar = findViewById(com.example.quicknote.R.id.toolbar)
         setSupportActionBar(toolbar)
-
-
 
         navController = findNavController(com.example.quicknote.R.id.fragmentContainerView)
 

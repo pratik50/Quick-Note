@@ -30,24 +30,26 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //For setting the toolbar title
+        //Setting the toolbar title
         if (activity != null) {
             activity?.setTitle("Quick Note")
         }
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-
+        //Search Menu inflating (Deprecated approach!!)
         setHasOptionsMenu(true)
 
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         binding.rcvNotes.layoutManager = staggeredGridLayoutManager
 
+        //Inflating all notes
         viewModel.getNotes().observe(viewLifecycleOwner) { notesList ->
             oldNotes = notesList as ArrayList<Notes>
             adapter = NotesAdapter(requireContext(), notesList)
             binding.rcvNotes.adapter = adapter
         }
 
+        //High priority filter btn
         binding.btnHigh.setOnClickListener {
             viewModel.getHighNotes().observe(viewLifecycleOwner) { notesList ->
                 oldNotes = notesList as ArrayList<Notes>
@@ -60,6 +62,7 @@ class HomeFragment : Fragment() {
             }
         }
 
+        //Medium priority filter btn
         binding.btnMedium.setOnClickListener {
             viewModel.getMediumNotes().observe(viewLifecycleOwner) { notesList ->
                 oldNotes = notesList as ArrayList<Notes>
@@ -72,6 +75,7 @@ class HomeFragment : Fragment() {
             }
         }
 
+        //Low priority filter btn
         binding.btnLow.setOnClickListener {
             viewModel.getLowNotes().observe(viewLifecycleOwner) { notesList ->
                 oldNotes = notesList as ArrayList<Notes>
@@ -84,6 +88,7 @@ class HomeFragment : Fragment() {
             }
         }
 
+        //ShowAll priority filter btn
         binding.btnFilter.setOnClickListener {
             viewModel.getNotes().observe(viewLifecycleOwner) { notesList ->
                 oldNotes = notesList as ArrayList<Notes>
@@ -96,7 +101,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-
+        //For Creating new note btn
         binding.btnAdd.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_homeFragment_to_createNoteFragment)
@@ -105,6 +110,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    //Search Menu Item Inflating with Filtering process (deprecated approach!!)
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)
         val item = menu.findItem(R.id.menu_search)

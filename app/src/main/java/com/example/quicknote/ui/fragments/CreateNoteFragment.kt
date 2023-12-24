@@ -37,7 +37,7 @@ class CreateNoteFragment : Fragment() {
         binding.pRed.setOnClickListener {
             priority = "1"
             binding.pRed.setImageResource(R.drawable.done_icon)
-            binding.pYellow.setImageResource(0)
+            binding.pBlue.setImageResource(0)
             binding.pGreen.setImageResource(0)
         }
 
@@ -45,12 +45,12 @@ class CreateNoteFragment : Fragment() {
             priority = "2"
             binding.pGreen.setImageResource(R.drawable.done_icon)
             binding.pRed.setImageResource(0)
-            binding.pYellow.setImageResource(0)
+            binding.pBlue.setImageResource(0)
         }
 
-        binding.pYellow.setOnClickListener {
+        binding.pBlue.setOnClickListener {
             priority = "3"
-            binding.pYellow.setImageResource(R.drawable.done_icon)
+            binding.pBlue.setImageResource(R.drawable.done_icon)
             binding.pGreen.setImageResource(0)
             binding.pRed.setImageResource(0)
         }
